@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café de Surigao | Surigao's First Premium Lifestyle Café</title>
+  <meta name="description"
+    content="More than coffee. A curated space for thinkers, creatives, and quiet conversations. Surigao's first elevated, work-friendly artisan coffee destination.">
+  <meta name="keywords"
+    content="Surigao café, premium coffee, artisan roasts, lifestyle café, work-friendly café, specialty coffee Surigao">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Café de Surigao | Surigao's First Premium Lifestyle Café">
+  <meta property="og:description" content="Artisan Roasts. Quiet Corners. Thoughtful Design.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/index.css">
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+
+  <!-- App JS -->
+  <script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ================================================================
+       NAVBAR
+       ================================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="navbar-brand">Café de Surigao</a>
+      <div class="navbar-links" id="navLinks">
+        <a href="#menu">Menu</a>
+        <a href="#story">Our Story</a>
+        <a href="#location">Visit</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reservations">Reserve</a>
+      </div>
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       1. HERO — "The Atmosphere"
+       ================================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="assets/images/cafe_interior.png" alt="Premium café interior with warm golden hour lighting"
+        loading="eager">
+    </div>
+    <div class="hero-overlay"></div>
+    <canvas id="hero-particles"></canvas>
+
+    <div class="hero-content">
+      <p class="hero-tagline">Surigao's First Premium Lifestyle Café</p>
+      <h1 class="hero-title">Surigao's First Elevated<br>Coffee Experience</h1>
+      <p class="hero-subtitle">Artisan Roasts. Quiet Corners. Thoughtful Design.</p>
+      <div class="hero-ctas">
+        <a href="#menu" class="btn-primary">View Menu</a>
+        <a href="#location" class="btn-secondary">Find Us</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" id="scrollIndicator">
+      <div class="scroll-mouse"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       2. INTERACTIVE DIGITAL MENU
+       ================================================================ -->
+  <section class="menu-section section-pad" id="menu">
+    <div class="container">
+      <div class="menu-header reveal">
+        <div class="gold-line"></div>
+        <p class="section-label">Our Menu</p>
+        <h2 class="section-headline">Crafted With Precision</h2>
+        <p class="section-subtext" style="margin: 0 auto;">Every cup tells a story. Every plate, a labor of love.</p>
+      </div>
+
+      <div class="menu-tabs reveal" id="menuTabs">
+        <button class="menu-tab active" data-category="espresso">Espresso Classics</button>
+        <button class="menu-tab" data-category="signature">Signature Blends</button>
+        <button class="menu-tab" data-category="seasonal">Seasonal Creations</button>
+        <button class="menu-tab" data-category="pastries">Artisan Pastries</button>
+        <button class="menu-tab" data-category="brunch">Hearty Brunch</button>
+      </div>
+
+      <div class="menu-grid-wrapper">
+        <div class="menu-grid" id="menuGrid">
+          <!-- Items injected by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       3. OUR STORY / PHILOSOPHY
+       ================================================================ -->
+  <section class="story-section section-pad" id="story">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image-wrapper reveal">
+          <img src="assets/images/barista_latte.png" alt="Barista pouring latte art with warm cinematic lighting"
+            loading="lazy">
+        </div>
+        <div class="story-content">
+          <div class="gold-line reveal"></div>
+          <p class="section-label reveal">Our Philosophy</p>
+          <h2 class="section-headline reveal">Brewed With Intention.</h2>
+          <blockquote class="story-quote reveal">
+            "More than coffee. A curated space for thinkers, creatives, and quiet conversations."
+          </blockquote>
+          <p class="story-text reveal">
+            We started with a simple belief — Surigao deserves more. More than instant coffee and noisy spaces. We
+            envisioned a sanctuary where ethically sourced beans meet quiet ambition; where every corner is designed for
+            focus, and every sip tells the story of a local farmer's craft.
+          </p>
+          <p class="story-text reveal">
+            From the warm grain of our hand-selected wood to the carefully curated playlist that fills our space, every
+            detail is intentional. We partner directly with Mindanao's finest smallholder farms, ensuring every bean is
+            sustainably grown, hand-picked, and roasted to perfection.
+          </p>
+          <div class="story-signature reveal">
+            <div class="story-signature-line"></div>
+            <span class="story-signature-text">The Café de Surigao Team</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       4. LOCATION & HOURS
+       ================================================================ -->
+  <section class="location-section section-pad" id="location">
+    <div class="container">
+      <div class="menu-header reveal" style="margin-bottom: 48px;">
+        <div class="gold-line"></div>
+        <p class="section-label">Find Us</p>
+        <h2 class="section-headline">Visit Our Space</h2>
+        <p class="section-subtext" style="margin: 0 auto;">Your next favorite corner is waiting.</p>
+      </div>
+
+      <div class="location-grid">
+        <div class="location-map reveal">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15815.46!2d125.4989!3d9.7897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwNDcnMjMuMCJOIDEyNcKwMjknNTYuMCJF!5e0!3m2!1sen!2sph!4v1"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Café Location Map">
+          </iframe>
+        </div>
+
+        <div class="location-info">
+          <div class="location-card reveal">
+            <div class="location-status open" id="liveStatus">
+              <div class="status-dot"></div>
+              <span>Open Now</span>
+            </div>
+            <div class="hours-list">
+              <div class="hours-row">
+                <span class="hours-day">Monday – Friday</span>
+                <span class="hours-time">7:00 AM – 10:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">Saturday</span>
+                <span class="hours-time">8:00 AM – 11:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">Sunday</span>
+                <span class="hours-time">8:00 AM – 9:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="location-card reveal">
+            <div class="amenities">
+              <div class="amenity-badge">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M2 9.5C2 5.36 5.36 2 9.5 2h5C18.64 2 22 5.36 22 9.5v5c0 4.14-3.36 7.5-7.5 7.5h-5C5.36 22 2 18.64 2 14.5v-5z" />
+                  <path d="M8.5 12h7M12 8.5v7" />
+                </svg>
+                Free Wi-Fi
+              </div>
+              <div class="amenity-badge">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6 7h12M6 12h12M8 17h8" />
+                  <rect x="4" y="4" width="16" height="16" rx="2" />
+                </svg>
+                Power Outlets
+              </div>
+              <div class="amenity-badge">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                </svg>
+                Work-Friendly
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       5. SOCIAL PROOF GALLERY
+       ================================================================ -->
+  <section class="gallery-section section-pad" id="gallery">
+    <div class="container">
+      <div class="gallery-header reveal">
+        <div class="gold-line"></div>
+        <p class="section-label">Moments</p>
+        <h2 class="section-headline">The Experience</h2>
+        <p class="section-subtext" style="margin: 0 auto;">A glimpse into life at The Artisan.</p>
+      </div>
+
+      <div class="gallery-masonry" id="galleryGrid">
+        <div class="gallery-item reveal">
+          <img src="assets/images/cafe_interior.png" alt="Minimalist café interior with golden hour lighting"
+            loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="assets/images/barista_latte.png" alt="Barista pouring latte art" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="assets/images/brunch_plate.png" alt="Elegant brunch plate with artisan coffee" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="assets/images/cafe_window.png" alt="Golden hour café window with laptop workers" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="assets/images/espresso_machine.png" alt="Premium espresso machine with steam" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="assets/images/cafe_latte_art.png" alt="Close-up latte art in ceramic cup" loading="lazy">
+        </div>
+      </div>
+
+      <div class="gallery-cta reveal">
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="btn-outline-gold">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+          </svg>
+          Follow Us on Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       6. RESERVATIONS / QUICK ORDER
+       ================================================================ -->
+  <section class="reservation-section section-pad" id="reservations">
+    <div class="container">
+      <div class="reservation-inner">
+        <div class="gold-line reveal" style="margin: 0 auto 24px;"></div>
+        <p class="section-label reveal">Reservations</p>
+        <h2 class="section-headline reveal">Reserve Your Table</h2>
+        <p class="section-subtext reveal">Secure your favorite corner. Walk-ins welcome, but reservations are
+          recommended for groups.</p>
+
+        <form class="reservation-form reveal" id="reservationForm" onsubmit="return false;">
+          <div class="form-group">
+            <input type="text" class="form-input" placeholder="Your Name" id="resName" required>
+            <label class="form-label" for="resName">Name</label>
+          </div>
+          <div class="form-group">
+            <input type="date" class="form-input" placeholder="Date" id="resDate" required>
+            <label class="form-label" for="resDate">Date</label>
+          </div>
+          <div class="form-group">
+            <input type="time" class="form-input" placeholder="Time" id="resTime" required>
+            <label class="form-label" for="resTime">Time</label>
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-input" placeholder="Number of Guests" min="1" max="20" id="resGuests"
+              required>
+            <label class="form-label" for="resGuests">Guests</label>
+          </div>
+          <button type="submit" class="btn-submit" id="submitReservation">Reserve Now</button>
+        </form>
+
+        <p class="reservation-alt reveal">
+          Prefer takeaway? <a href="#menu">Pre-Order for Pickup →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+       ================================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-brand">Café de Surigao</p>
+      <p class="footer-tagline">More than coffee. A curated space for thinkers, creatives, and quiet conversations.</p>
+      <div class="footer-links">
+        <a href="#menu">Menu</a>
+        <a href="#story">Our Story</a>
+        <a href="#location">Visit</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reservations">Reserve</a>
+      </div>
+      <div class="footer-divider"></div>
+      <p class="footer-copy">&copy; 2026 Café de Surigao. Surigao del Norte, Philippines. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Image Modal -->
+  <div class="menu-modal-overlay" id="menuModal">
+    <div class="menu-modal">
+      <button class="menu-modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="menu-modal-image">
+        <img src="" alt="" id="modalImage">
+      </div>
+      <div class="menu-modal-info">
+        <h3 class="menu-modal-name" id="modalName"></h3>
+        <span class="menu-modal-price" id="modalPrice"></span>
+        <p class="menu-modal-desc" id="modalDesc"></p>
+        <div class="menu-modal-badge" id="modalBadge">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          Barista's Signature
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
