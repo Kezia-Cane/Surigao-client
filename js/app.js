@@ -1,5 +1,5 @@
 /* ========================================================================
-   PREMIUM CAFÉ — APP.JS
+   GRACIOUS CAFE — APP.JS
    Animations, Interactivity, Menu Data, Particles & Smooth Scroll
    ======================================================================== */
 
@@ -47,7 +47,7 @@ const MENU_DATA = {
     { name: 'Avocado Toast Luxe', desc: 'Smashed avo, poached eggs, dukkah, microgreens on rye', price: '₱265', badge: false },
     { name: 'Shakshuka', desc: 'Spiced tomato, baked eggs, feta & warm pita bread', price: '₱255', badge: false },
     { name: 'Ricotta Hotcakes', desc: 'Fluffy ricotta pancakes, honeycomb butter & berry compote', price: '₱245', badge: false },
-    { name: 'The Surigao Breakfast', desc: 'Sourdough, eggs your way, bacon, roasted tomato, greens', price: '₱325', badge: true },
+    { name: 'The Gracious Breakfast', desc: 'Sourdough, eggs your way, bacon, roasted tomato, greens', price: '₱325', badge: true },
   ],
 };
 
@@ -89,11 +89,15 @@ function renderMenuItems(category) {
 
     grid.classList.remove('fading');
 
-    // Animate cards in
+    // Animate cards in horizontally
     if (typeof gsap !== 'undefined') {
       gsap.fromTo(grid.querySelectorAll('.menu-card'),
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' }
+        { opacity: 0, x: 60, scale: 0.95 },
+        {
+          opacity: 1, x: 0, scale: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out', onComplete: () => {
+            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+          }
+        }
       );
     }
 
@@ -106,7 +110,60 @@ function renderMenuItems(category) {
         if (item) openMenuModal(item, CATEGORY_IMAGES[cat]);
       });
     });
-  }, 350);
+  }, 400);
+}
+
+/* ---------- INIT: Horizontal Showcase ---------- */
+function initHorizontalShowcase() {
+  const wrapper = document.querySelector('.menu-showcase-wrapper');
+  const showcase = document.querySelector('.menu-showcase');
+  if (!wrapper || !showcase) return;
+
+  // Simple mouse/touch drag-to-scroll — no GSAP pin conflicts.
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  wrapper.addEventListener('mousedown', (e) => {
+    isDown = true;
+    wrapper.classList.add('active');
+    startX = e.pageX - wrapper.offsetLeft;
+    scrollLeft = wrapper.scrollLeft;
+  });
+  wrapper.addEventListener('mouseleave', () => { isDown = false; wrapper.classList.remove('active'); });
+  wrapper.addEventListener('mouseup', () => { isDown = false; wrapper.classList.remove('active'); });
+  wrapper.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - wrapper.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    wrapper.scrollLeft = scrollLeft - walk;
+  });
+
+  // Touch support
+  wrapper.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].pageX - wrapper.offsetLeft;
+    scrollLeft = wrapper.scrollLeft;
+  }, { passive: true });
+  wrapper.addEventListener('touchmove', (e) => {
+    const x = e.touches[0].pageX - wrapper.offsetLeft;
+    wrapper.scrollLeft = scrollLeft - (x - startX) * 1.2;
+  }, { passive: true });
+
+  // GSAP: animate showcards in on scroll-into-view (no pin needed)
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.fromTo(showcase.querySelectorAll('.menu-card'),
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: wrapper,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  }
 }
 
 /* ---------- MODAL FUNCTIONS ---------- */
@@ -345,22 +402,33 @@ function initSmoothScroll() {
   if (typeof Lenis === 'undefined') return;
 
   lenisInstance = new Lenis({
-    duration: 1.2,
+    duration: 1.4,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
     smoothTouch: false,
-    wheelMultiplier: 1,
+    wheelMultiplier: 0.9,
   });
 
-  // Use GSAP ticker as the SOLE driver for Lenis (no separate RAF loop)
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    // CRITICAL: Tell ScrollTrigger to use Lenis as the scroll source
+    ScrollTrigger.scrollerProxy(document.body, {
+      scrollTop(value) {
+        if (arguments.length) {
+          lenisInstance.scrollTo(value, { immediate: true });
+        }
+        return lenisInstance.scroll;
+      },
+      getBoundingClientRect() {
+        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+      },
+    });
+
     lenisInstance.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
       lenisInstance.raf(time * 1000);
     });
     gsap.ticker.lagSmoothing(0);
   } else {
-    // Fallback if GSAP isn't loaded
     function raf(time) {
       lenisInstance.raf(time);
       requestAnimationFrame(raf);
@@ -479,6 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     initSmoothScroll();
     initScrollReveal();
+    initHorizontalShowcase();
     // Anchor links MUST init after Lenis so they use lenis.scrollTo()
     initAnchorLinks();
   }, 300);
