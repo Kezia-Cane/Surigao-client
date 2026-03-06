@@ -4,12 +4,18 @@
    ======================================================================== */
 
 /* ---------- MENU DATA ---------- */
+import espressoImg from '../assets/images/menu_espresso.png';
+import signatureImg from '../assets/images/menu_signature.png';
+import seasonalImg from '../assets/images/menu_seasonal.png';
+import pastriesImg from '../assets/images/menu_pastries.png';
+import brunchImg from '../assets/images/menu_brunch.png';
+
 const CATEGORY_IMAGES = {
-  espresso: 'assets/images/menu_espresso.png',
-  signature: 'assets/images/menu_signature.png',
-  seasonal: 'assets/images/menu_seasonal.png',
-  pastries: 'assets/images/menu_pastries.png',
-  brunch: 'assets/images/menu_brunch.png',
+  espresso: espressoImg,
+  signature: signatureImg,
+  seasonal: seasonalImg,
+  pastries: pastriesImg,
+  brunch: brunchImg,
 };
 
 const MENU_DATA = {
